@@ -1,6 +1,6 @@
-﻿namespace Levantoso
+﻿namespace Levantoso.Forms
 {
-    partial class Main
+    partial class CreateGroupForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,51 +29,55 @@
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
-            this.btnGerar = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.inputNomeGrupo = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.button1.Location = new System.Drawing.Point(387, 369);
+            this.button1.Location = new System.Drawing.Point(197, 64);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(105, 41);
+            this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Novo Grupo";
+            this.button1.Text = "OK";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // btnGerar
+            // label1
             // 
-            this.btnGerar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnGerar.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnGerar.Location = new System.Drawing.Point(498, 369);
-            this.btnGerar.Name = "btnGerar";
-            this.btnGerar.Size = new System.Drawing.Size(105, 41);
-            this.btnGerar.TabIndex = 1;
-            this.btnGerar.Text = "Gerar Arquivo";
-            this.btnGerar.UseVisualStyleBackColor = true;
-            this.btnGerar.Click += new System.EventHandler(this.btnGerar_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Nome do Grupo:";
             // 
-            // Main
+            // inputNomeGrupo
+            // 
+            this.inputNomeGrupo.Location = new System.Drawing.Point(12, 38);
+            this.inputNomeGrupo.Name = "inputNomeGrupo";
+            this.inputNomeGrupo.Size = new System.Drawing.Size(260, 20);
+            this.inputNomeGrupo.TabIndex = 2;
+            // 
+            // _CreateGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(615, 422);
-            this.Controls.Add(this.btnGerar);
+            this.ClientSize = new System.Drawing.Size(283, 101);
+            this.Controls.Add(this.inputNomeGrupo);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
-            this.Name = "Main";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Name = "_CreateGroup";
+            this.Text = "Novo Grupo";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnGerar;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox inputNomeGrupo;
     }
 }
-

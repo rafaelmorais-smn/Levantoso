@@ -3,9 +3,9 @@ using System.Windows.Forms;
 
 namespace Levantoso.Forms
 {
-    public partial class _CreateGroup : Form
+    public partial class CreateGroupForm : Form
     {
-        public _CreateGroup()
+        public CreateGroupForm()
         {
             InitializeComponent();
         }
@@ -13,8 +13,8 @@ namespace Levantoso.Forms
         private void button1_Click(object sender, EventArgs e)
         {
             var nomeGrupo = inputNomeGrupo.Text;
-            var mainForm = Application.OpenForms["Main"];
-            (mainForm as Main)?.AbrirGroup(nomeGrupo);
+            var mainForm = Application.OpenForms["MainForm"];
+            (mainForm as MainForm)?.AbrirGroup(nomeGrupo);
             Close();
         }
     }
