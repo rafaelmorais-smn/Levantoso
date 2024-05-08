@@ -32,5 +32,11 @@ namespace Levantoso.Forms.Group
             //if (mainForm != null)
             //    mainForm.Height += groupForm.Height;
         }
+
+        private void BtnAdicionarItem_Click(object sender, System.EventArgs e)
+        {
+            var groupTable = new GroupTable("");
+            groupTable.AdicionarDadosGrid(CbItem.Text, CbComplexidade.Text, InputDescricao.Text);
+        }
     }
 }

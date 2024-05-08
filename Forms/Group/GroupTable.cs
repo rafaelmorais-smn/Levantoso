@@ -24,7 +24,7 @@ namespace Levantoso.Forms.Group
         {
             var groupForm = new GroupForm();
             Controls.Add(groupForm);
-            var posicaoFinalTabela = DataGridItens.Bottom;
+            var posicaoFinalTabela = TabelaGroup.Bottom;
             groupForm.Top = posicaoFinalTabela + 15;
             groupForm.Left = 15;
             groupForm.BringToFront();
@@ -34,6 +34,17 @@ namespace Levantoso.Forms.Group
             if (mainForm != null)
                 mainForm.Height += groupForm.Height;
             groupForm.Show();
+        }
+
+        public void AdicionarDadosGrid(string item, string complexidade, string descricao)
+        {
+            if (string.IsNullOrEmpty(item) || string.IsNullOrEmpty(complexidade) || string.IsNullOrEmpty(descricao))
+                return;
+
+            var dados = new ListViewItem(item);
+            dados.SubItems.Add(complexidade);
+            dados.SubItems.Add(descricao);
+            TabelaGroup.Items.Add(dados);
         }
     }
 }

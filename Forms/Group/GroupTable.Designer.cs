@@ -28,44 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.DataGridItens = new System.Windows.Forms.DataGridView();
-            this.Item = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Complexidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("yrdyr");
             this.BtnNovoItem = new System.Windows.Forms.Button();
             this.GroupBoxName = new System.Windows.Forms.GroupBox();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridItens)).BeginInit();
+            this.TabelaGroup = new System.Windows.Forms.ListView();
+            this.item = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.complexidade = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.descricao = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.GroupBoxName.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // DataGridItens
-            // 
-            this.DataGridItens.AllowUserToAddRows = false;
-            this.DataGridItens.AllowUserToOrderColumns = true;
-            this.DataGridItens.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridItens.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Item,
-            this.Complexidade,
-            this.Descricao});
-            this.DataGridItens.Location = new System.Drawing.Point(13, 19);
-            this.DataGridItens.Name = "DataGridItens";
-            this.DataGridItens.Size = new System.Drawing.Size(789, 150);
-            this.DataGridItens.TabIndex = 3;
-            // 
-            // Item
-            // 
-            this.Item.HeaderText = "Item";
-            this.Item.Name = "Item";
-            // 
-            // Complexidade
-            // 
-            this.Complexidade.HeaderText = "Complexidade";
-            this.Complexidade.Name = "Complexidade";
-            // 
-            // Descricao
-            // 
-            this.Descricao.HeaderText = "Descrição";
-            this.Descricao.Name = "Descricao";
             // 
             // BtnNovoItem
             // 
@@ -80,6 +51,7 @@
             // 
             // GroupBoxName
             // 
+            this.GroupBoxName.Controls.Add(this.TabelaGroup);
             this.GroupBoxName.Controls.Add(this.BtnNovoItem);
             this.GroupBoxName.Location = new System.Drawing.Point(4, 4);
             this.GroupBoxName.Name = "GroupBoxName";
@@ -88,27 +60,57 @@
             this.GroupBoxName.TabStop = false;
             this.GroupBoxName.Text = "groupBox1";
             // 
+            // TabelaGroup
+            // 
+            this.TabelaGroup.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.TabelaGroup.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.item,
+            this.complexidade,
+            this.descricao});
+            this.TabelaGroup.FullRowSelect = true;
+            this.TabelaGroup.GridLines = true;
+            this.TabelaGroup.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1});
+            this.TabelaGroup.Location = new System.Drawing.Point(6, 14);
+            this.TabelaGroup.Name = "TabelaGroup";
+            this.TabelaGroup.Size = new System.Drawing.Size(798, 195);
+            this.TabelaGroup.TabIndex = 5;
+            this.TabelaGroup.UseCompatibleStateImageBehavior = false;
+            this.TabelaGroup.View = System.Windows.Forms.View.Details;
+            // 
+            // item
+            // 
+            this.item.Text = "Item";
+            this.item.Width = 248;
+            // 
+            // complexidade
+            // 
+            this.complexidade.Text = "Complexidade";
+            this.complexidade.Width = 234;
+            // 
+            // descricao
+            // 
+            this.descricao.Text = "Descrição";
+            this.descricao.Width = 263;
+            // 
             // GroupTable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.DataGridItens);
             this.Controls.Add(this.GroupBoxName);
             this.Name = "GroupTable";
             this.Size = new System.Drawing.Size(880, 243);
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridItens)).EndInit();
             this.GroupBoxName.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView DataGridItens;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Item;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Complexidade;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Descricao;
         private System.Windows.Forms.Button BtnNovoItem;
         private System.Windows.Forms.GroupBox GroupBoxName;
+        private System.Windows.Forms.ListView TabelaGroup;
+        private System.Windows.Forms.ColumnHeader item;
+        private System.Windows.Forms.ColumnHeader complexidade;
+        private System.Windows.Forms.ColumnHeader descricao;
     }
 }

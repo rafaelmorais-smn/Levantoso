@@ -49,6 +49,7 @@
             this.BtnAdicionarItem.TabIndex = 13;
             this.BtnAdicionarItem.Text = "Adicionar";
             this.BtnAdicionarItem.UseVisualStyleBackColor = true;
+            this.BtnAdicionarItem.Click += new System.EventHandler(this.BtnAdicionarItem_Click);
             // 
             // InputDescricao
             // 
