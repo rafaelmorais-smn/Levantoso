@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("yrdyr");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("adasd");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("adssada");
             this.BtnNovoItem = new System.Windows.Forms.Button();
             this.GroupBoxName = new System.Windows.Forms.GroupBox();
             this.TabelaGroup = new System.Windows.Forms.ListView();
@@ -70,7 +72,9 @@
             this.TabelaGroup.FullRowSelect = true;
             this.TabelaGroup.GridLines = true;
             this.TabelaGroup.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem1,
+            listViewItem2,
+            listViewItem3});
             this.TabelaGroup.Location = new System.Drawing.Point(6, 14);
             this.TabelaGroup.Name = "TabelaGroup";
             this.TabelaGroup.Size = new System.Drawing.Size(798, 195);
@@ -108,7 +112,7 @@
         #endregion
         private System.Windows.Forms.Button BtnNovoItem;
         private System.Windows.Forms.GroupBox GroupBoxName;
-        private System.Windows.Forms.ListView TabelaGroup;
+        public System.Windows.Forms.ListView TabelaGroup;
         private System.Windows.Forms.ColumnHeader item;
         private System.Windows.Forms.ColumnHeader complexidade;
         private System.Windows.Forms.ColumnHeader descricao;

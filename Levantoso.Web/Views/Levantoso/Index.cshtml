@@ -1,0 +1,23 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "title";
+    Layout = null;
+}
+
+<div id="container-tudo">
+    <button onclick="levantoso.abrirGridForm()">Novo Grupo</button>
+    <div id="div-grid-tabela"></div>
+    <div id="div-grid-form"></div>
+</div>
+
+<script src="~/scripts/jquery-3.7.1.js"></script>
+<script src="~/scripts/levantoso.js"></script>
+<script>
+    levantoso.init({
+        urls: {
+            abrirGrids: '@Url.Action("AbrirGrids")'
+        }
+    });
+
+</script>

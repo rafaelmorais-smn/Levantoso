@@ -36,7 +36,10 @@ namespace Levantoso.Forms.Group
         private void BtnAdicionarItem_Click(object sender, System.EventArgs e)
         {
             var groupTable = new GroupTable("");
-            groupTable.AdicionarDadosGrid(CbItem.Text, CbComplexidade.Text, InputDescricao.Text);
+            var dados = new ListViewItem(CbItem.Text);
+            dados.SubItems.Add(CbComplexidade.Text);
+            dados.SubItems.Add(InputDescricao.Text);
+            groupTable.TabelaGroup.Items.Add(dados);
         }
     }
 }
