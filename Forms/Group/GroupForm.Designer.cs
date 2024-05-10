@@ -45,6 +45,7 @@
             // 
             // BtnAdicionarItem
             // 
+            this.BtnAdicionarItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnAdicionarItem.Location = new System.Drawing.Point(557, 114);
             this.BtnAdicionarItem.Name = "BtnAdicionarItem";
             this.BtnAdicionarItem.Size = new System.Drawing.Size(108, 23);
@@ -55,6 +56,9 @@
             // 
             // InputDescricao
             // 
+            this.InputDescricao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.InputDescricao.Location = new System.Drawing.Point(3, 67);
             this.InputDescricao.Multiline = true;
             this.InputDescricao.Name = "InputDescricao";
@@ -72,6 +76,9 @@
             // 
             // CbComplexidade
             // 
+            this.CbComplexidade.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.CbComplexidade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbComplexidade.FormattingEnabled = true;
             this.CbComplexidade.Location = new System.Drawing.Point(394, 22);
@@ -81,6 +88,9 @@
             // 
             // CbItem
             // 
+            this.CbItem.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.CbItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbItem.FormattingEnabled = true;
             this.CbItem.Location = new System.Drawing.Point(3, 22);
@@ -108,6 +118,7 @@
             // 
             // BtnCancelarItem
             // 
+            this.BtnCancelarItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnCancelarItem.Location = new System.Drawing.Point(668, 114);
             this.BtnCancelarItem.Name = "BtnCancelarItem";
             this.BtnCancelarItem.Size = new System.Drawing.Size(108, 23);

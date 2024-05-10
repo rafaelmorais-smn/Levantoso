@@ -28,6 +28,11 @@ namespace Levantoso.Forms.Group
             CbItem.Select();
         }
 
+        public void AjustaLargura(int largura)
+        {
+            Width = Convert.ToInt32(largura * 0.9);
+        }
+
         private void PreencheCombos()
         {
             CbItem.DataSource = ItemList.ComboValues;

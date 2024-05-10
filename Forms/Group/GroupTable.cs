@@ -40,6 +40,13 @@ namespace Levantoso.Forms.Group
             AjustaPosicaoJanela(altura);
         }
 
+        public void AjustaLargura(int largura)
+        {
+            Width = Convert.ToInt32(largura * 0.95);
+            var form = Controls["GroupForm"] as GroupForm;
+            form?.AjustaLargura(Width);
+        }
+
         private void AjustaPosicaoGroup(int alturaForm)
         {
             alturaForm += alturaForm > 0 ? 10 : -10;
@@ -64,6 +71,7 @@ namespace Levantoso.Forms.Group
             groupForm.Show();
             groupForm.BringToFront();
             groupForm.AtribuiFoco();
+            groupForm.AjustaLargura(Width);
             FormAberto = true;
         }
 
@@ -102,6 +110,6 @@ namespace Levantoso.Forms.Group
 
             foreach (ListViewItem listViewItem in ((ListView)sender).SelectedItems)
                 listViewItem.Remove();
-        }
+        }    
     }
 }

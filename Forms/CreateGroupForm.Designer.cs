@@ -68,6 +68,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Name = "CreateGroupForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Novo Grupo";
             this.ResumeLayout(false);
             this.PerformLayout();

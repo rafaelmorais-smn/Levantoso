@@ -1,6 +1,4 @@
-﻿using System.Windows.Forms;
-
-namespace Levantoso.Forms.Group
+﻿namespace Levantoso.Forms.Group
 {
     partial class GroupTable
     {
@@ -42,6 +40,7 @@ namespace Levantoso.Forms.Group
             // 
             // BtnNovoItem
             // 
+            this.BtnNovoItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnNovoItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnNovoItem.Location = new System.Drawing.Point(807, 57);
             this.BtnNovoItem.Name = "BtnNovoItem";
@@ -53,18 +52,21 @@ namespace Levantoso.Forms.Group
             // 
             // GroupBoxName
             // 
+            this.GroupBoxName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.GroupBoxName.Controls.Add(this.BtnRemoverGrupo);
             this.GroupBoxName.Controls.Add(this.TabelaGroup);
             this.GroupBoxName.Controls.Add(this.BtnNovoItem);
             this.GroupBoxName.Location = new System.Drawing.Point(4, 4);
             this.GroupBoxName.Name = "GroupBoxName";
-            this.GroupBoxName.Size = new System.Drawing.Size(873, 139);
+            this.GroupBoxName.Size = new System.Drawing.Size(873, 124);
             this.GroupBoxName.TabIndex = 5;
             this.GroupBoxName.TabStop = false;
             this.GroupBoxName.Text = "groupBox1";
             // 
             // BtnRemoverGrupo
             // 
+            this.BtnRemoverGrupo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnRemoverGrupo.ForeColor = System.Drawing.Color.Red;
             this.BtnRemoverGrupo.Location = new System.Drawing.Point(809, 14);
             this.BtnRemoverGrupo.Name = "BtnRemoverGrupo";
@@ -77,6 +79,8 @@ namespace Levantoso.Forms.Group
             // TabelaGroup
             // 
             this.TabelaGroup.AllowDrop = true;
+            this.TabelaGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TabelaGroup.BackColor = System.Drawing.SystemColors.Window;
             this.TabelaGroup.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.item,
@@ -110,10 +114,11 @@ namespace Levantoso.Forms.Group
             // 
             // GroupTable
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.GroupBoxName);
             this.Name = "GroupTable";
-            this.Size = new System.Drawing.Size(880, 155);
+            this.Size = new System.Drawing.Size(880, 131);
             this.GroupBoxName.ResumeLayout(false);
             this.ResumeLayout(false);
 

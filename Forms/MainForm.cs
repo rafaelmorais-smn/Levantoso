@@ -29,8 +29,8 @@ namespace Levantoso.Forms
                 Top = RecuperaPosicaoUltimoGrupo() + 10
             };
 
+            groupTable.AjustaLargura(Width);
             Height += groupTable.Height + 10;
-            Anchor = AnchorStyles.Right;
             Controls.Add(groupTable);
             Grupos.Add(new Tuple<byte, GroupTable>(sequencialGrupo, groupTable));
             groupTable.Show();
@@ -58,6 +58,12 @@ namespace Levantoso.Forms
                 throw new Exception();
 
             return ultimoGrupo.Bottom;
+        }
+
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            foreach (var groupTable in Grupos.Select(x => x.Item2))
+                groupTable.AjustaLargura(Convert.ToInt32(Width * 0.95));
         }
     }
 }
