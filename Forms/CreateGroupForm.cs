@@ -17,5 +17,10 @@ namespace Levantoso.Forms
             (mainForm as MainForm)?.AbrirGroup(nomeGrupo);
             Close();
         }
+
+        public void AtribuiFoco()
+        {
+            inputNomeGrupo.Focus();
+        }
     }
 }

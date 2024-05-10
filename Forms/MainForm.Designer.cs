@@ -37,7 +37,7 @@
             this.BtnNovoGrupo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnNovoGrupo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.BtnNovoGrupo.Cursor = System.Windows.Forms.Cursors.Default;
-            this.BtnNovoGrupo.Location = new System.Drawing.Point(738, 216);
+            this.BtnNovoGrupo.Location = new System.Drawing.Point(363, 37);
             this.BtnNovoGrupo.Name = "BtnNovoGrupo";
             this.BtnNovoGrupo.Size = new System.Drawing.Size(105, 41);
             this.BtnNovoGrupo.TabIndex = 0;
@@ -50,7 +50,7 @@
             this.BtnGerar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnGerar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.BtnGerar.Cursor = System.Windows.Forms.Cursors.Default;
-            this.BtnGerar.Location = new System.Drawing.Point(849, 216);
+            this.BtnGerar.Location = new System.Drawing.Point(474, 37);
             this.BtnGerar.Name = "BtnGerar";
             this.BtnGerar.Size = new System.Drawing.Size(105, 41);
             this.BtnGerar.TabIndex = 1;
@@ -62,12 +62,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(964, 269);
+            this.ClientSize = new System.Drawing.Size(964, 90);
             this.Controls.Add(this.BtnGerar);
             this.Controls.Add(this.BtnNovoGrupo);
             this.Name = "MainForm";
             this.Text = "Levantoso";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
 
         }

@@ -38,7 +38,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.BtnCancelarItem = new System.Windows.Forms.Button();
+            this.itemListBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.groupFormBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemListBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // BtnAdicionarItem
@@ -70,6 +72,7 @@
             // 
             // CbComplexidade
             // 
+            this.CbComplexidade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbComplexidade.FormattingEnabled = true;
             this.CbComplexidade.Location = new System.Drawing.Point(394, 22);
             this.CbComplexidade.Name = "CbComplexidade";
@@ -78,6 +81,7 @@
             // 
             // CbItem
             // 
+            this.CbItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbItem.FormattingEnabled = true;
             this.CbItem.Location = new System.Drawing.Point(3, 22);
             this.CbItem.Name = "CbItem";
@@ -112,6 +116,10 @@
             this.BtnCancelarItem.UseVisualStyleBackColor = true;
             this.BtnCancelarItem.Click += new System.EventHandler(this.BtnCancelarItem_Click);
             // 
+            // itemListBindingSource
+            // 
+            this.itemListBindingSource.DataSource = typeof(Levantoso.Lists.ItemList);
+            // 
             // GroupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -127,6 +135,7 @@
             this.Name = "GroupForm";
             this.Size = new System.Drawing.Size(788, 149);
             ((System.ComponentModel.ISupportInitialize)(this.groupFormBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemListBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -142,5 +151,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BtnCancelarItem;
+        private System.Windows.Forms.BindingSource itemListBindingSource;
     }
 }
