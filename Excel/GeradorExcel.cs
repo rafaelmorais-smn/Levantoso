@@ -96,13 +96,18 @@ namespace Levantoso.Excel
                 foreach (var itemLevantamento in grupo.Itens)
                 {
                     linha += 1;
-                    var celularCodigo = ws.Cells[linha, 1];
-                    celularCodigo.Value = $"{itemLevantamento.Item.Value}{itemLevantamento.Complexidade.Value}";
-                    celularCodigo.Style.Font.Color.SetColor(Color.White);
+                    var celulaCodigo = ws.Cells[linha, 1];
+                    celulaCodigo.Value = $"{itemLevantamento.Item.Value:00}{itemLevantamento.Complexidade.Value}";
+                    celulaCodigo.Style.Font.Color.SetColor(Color.White);
 
                     ws.Cells[linha, 2].Value = $"{itemLevantamento.Item.Text} {itemLevantamento.Complexidade.Text} {itemLevantamento.Descricao}";
                 }
             }
+
+            linha += 1;
+            var celulaFim = ws.Cells[linha, 1];
+            celulaFim.Value = "fim";
+            celulaFim.Style.Font.Color.SetColor(Color.White);
         }
     }
 }

@@ -1,10 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 
 namespace Levantoso.Models
 {
     public class GrupoModel
     {
+        public GrupoModel()
+        {
+            
+        }
+
+        public GrupoModel(string nomeGrupo)
+        {
+            NomeGrupo = nomeGrupo;
+            Itens = new Collection<ItemLevantamentoModel>();
+        }
+
         public string NomeGrupo { get; set; }
-        public IEnumerable<ItemLevantamentoModel> Itens { get; set; }
+        public Collection<ItemLevantamentoModel> Itens { get; set; }
     }
 }

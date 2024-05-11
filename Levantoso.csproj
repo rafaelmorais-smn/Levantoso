@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Excel\GeradorExcel.cs" />
+    <Compile Include="Excel\LeitorExcel.cs" />
     <Compile Include="Lists\ComplexidadeList.cs" />
     <Compile Include="Lists\ComboItem.cs" />
     <Compile Include="Lists\ItemList.cs" />

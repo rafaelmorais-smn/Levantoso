@@ -66,6 +66,11 @@ namespace Levantoso.Forms.Group
             BtnCancelarItem_Click(null, null);
         }
 
+        public void AdicionarItemTabela(ComboItem item, ComboItem complexidade, string descricao)
+        {
+            
+        }
+
         private GroupTable BuscaGrupo()
         {
             var mainForm = Application.OpenForms["MainForm"] as MainForm;
