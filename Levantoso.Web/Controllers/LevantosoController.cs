@@ -7,9 +7,16 @@ namespace Levantoso.Web.Controllers
         // GET: Levantoso
         public ActionResult Index() => View();
 
-        public ActionResult AbrirGrids()
+        public ActionResult AbrirForm(string nome)
         {
-            return View("_gridForm");
+            ViewBag.NomeGrupo = nome;
+            return View("_gridDados");
         }
+        public ActionResult GerarTabela(string nomeTabela)
+        {
+            ViewBag.NomeTabela = nomeTabela;
+            return View("_gridTabelas");
+        }
+
     }
 }

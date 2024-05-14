@@ -1,0 +1,16 @@
+﻿body {
+    background: black;
+}
+
+#container-tudo {
+    background: darkgray;
+    max-width: 1000px;
+    max-height: 1000px;
+    height: 500px;
+    text-align: center;
+}
+
+.modal-content {
+    width: 200px;
+    height: 100px;
+}
