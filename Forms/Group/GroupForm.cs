@@ -1,45 +1,97 @@
-﻿using System.Windows.Forms;
+﻿using Levantoso.Lists;
+using Levantoso.Models;
+using System;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Levantoso.Forms.Group
 {
     public partial class GroupForm : UserControl
     {
-        public GroupForm()
+        public byte SequencialGrupo;
+
+        public GroupForm(byte sequencialGrupo)
         {
             InitializeComponent();
-
-            CbComplexidade.Items.Add("Simples");
-            CbComplexidade.Items.Add("Médio");
-            CbComplexidade.Items.Add("Complexo");
-
-            CbItem.Items.Add("Tabela");
-            CbItem.Items.Add("Formulário");
-            CbItem.Items.Add("Procedure");
-            CbItem.Items.Add("JOB");
-            CbItem.Items.Add("Trigger");
-            CbItem.Items.Add("Função");
-            CbItem.Items.Add("Script");
-            CbItem.Items.Add("Modelagem");
-            CbItem.Items.Add("API");
-            CbItem.Items.Add("Console");
-            CbItem.Items.Add("PDF");
-            CbItem.Items.Add("Excel");
+            SequencialGrupo = sequencialGrupo;
+            PreencheCombos();
         }
 
-        private void BtnCancelarItem_Click(object sender, System.EventArgs e)
+        public void AjustaPosicaoForm(int posicaoFinalTabela)
         {
-            //var mainForm = Application.OpenForms["GroupTable"]. as MainForm;
-            //if (mainForm != null)
-            //    mainForm.Height += groupForm.Height;
+            Top = posicaoFinalTabela + 15;
+            Left = 15;
         }
 
-        private void BtnAdicionarItem_Click(object sender, System.EventArgs e)
+        public void AtribuiFoco()
         {
-            var groupTable = new GroupTable("");
-            var dados = new ListViewItem(CbItem.Text);
-            dados.SubItems.Add(CbComplexidade.Text);
-            dados.SubItems.Add(InputDescricao.Text);
-            groupTable.TabelaGroup.Items.Add(dados);
+            CbItem.Select();
+        }
+
+        public void AjustaLargura(int largura)
+        {
+            Width = Convert.ToInt32(largura * 0.9);
+        }
+
+        private void PreencheCombos()
+        {
+            CbItem.DataSource = ItemList.ComboValues;
+            CbComplexidade.DataSource = ComplexidadeList.ComboValues;
+        }
+
+        private void BtnCancelarItem_Click(object sender, EventArgs e)
+        {
+            Hide();
+            LimpaCampos();
+            var grupo = BuscaGrupo();
+            grupo.AjustaPosicoes(Height * -1);
+            grupo.FormAberto = false;
+        }
+
+        private void BtnAdicionarItem_Click(object sender, EventArgs e)
+        {
+            var item = (ComboItem) CbItem.SelectedItem;
+            var complexidade = (ComboItem) CbComplexidade.SelectedItem;
+
+            if (item.Value == 0 || complexidade.Value == 0 || string.IsNullOrEmpty(InputDescricao.Text))
+                return;
+
+            var linha = new ListViewItem(new[] {item.Text, complexidade.Text, InputDescricao.Text})
+            {
+                Tag = new ItemLevantamentoModel(item, complexidade, InputDescricao.Text)
+            };
+
+            var grupo = BuscaGrupo();
+            grupo.TabelaGroup.Items.Add(linha);
+            BtnCancelarItem_Click(null, null);
+        }
+
+        public void AdicionarItemTabela(ComboItem item, ComboItem complexidade, string descricao)
+        {
+            
+        }
+
+        private GroupTable BuscaGrupo()
+        {
+            var mainForm = Application.OpenForms["MainForm"] as MainForm;
+            if (mainForm == null)
+                throw new Exception();
+
+            var form = (GroupForm)BtnAdicionarItem.Parent;
+            if (form == null)
+                throw new Exception();
+
+            var grupo = mainForm.Grupos.FirstOrDefault(x => x.Item1 == form.SequencialGrupo)?.Item2;
+            if (grupo == null)
+                throw new Exception();
+
+            return grupo;
+        }
+
+        private void LimpaCampos()
+        {
+            PreencheCombos();
+            InputDescricao.Text = "";
         }
     }
 }

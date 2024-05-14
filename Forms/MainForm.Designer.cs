@@ -1,4 +1,6 @@
-﻿namespace Levantoso.Forms
+﻿using System.Windows.Forms;
+
+namespace Levantoso.Forms
 {
     partial class MainForm
     {
@@ -28,54 +30,94 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.BtnNovoGrupo = new System.Windows.Forms.Button();
-            this.BtnGerar = new System.Windows.Forms.Button();
+            this.InputNomeLevantamento = new System.Windows.Forms.TextBox();
+            this.LabelNomeLevantamento = new System.Windows.Forms.Label();
+            this.FileDialogImportarArquivo = new System.Windows.Forms.OpenFileDialog();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // BtnNovoGrupo
+            // InputNomeLevantamento
             // 
-            this.BtnNovoGrupo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnNovoGrupo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.BtnNovoGrupo.Cursor = System.Windows.Forms.Cursors.Default;
-            this.BtnNovoGrupo.Location = new System.Drawing.Point(738, 216);
-            this.BtnNovoGrupo.Name = "BtnNovoGrupo";
-            this.BtnNovoGrupo.Size = new System.Drawing.Size(105, 41);
-            this.BtnNovoGrupo.TabIndex = 0;
-            this.BtnNovoGrupo.Text = "Novo Grupo";
-            this.BtnNovoGrupo.UseVisualStyleBackColor = true;
-            this.BtnNovoGrupo.Click += new System.EventHandler(this.BtnNovoGrupo_Click);
+            this.InputNomeLevantamento.Location = new System.Drawing.Point(15, 20);
+            this.InputNomeLevantamento.Name = "InputNomeLevantamento";
+            this.InputNomeLevantamento.Size = new System.Drawing.Size(313, 20);
+            this.InputNomeLevantamento.TabIndex = 2;
             // 
-            // BtnGerar
+            // LabelNomeLevantamento
             // 
-            this.BtnGerar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnGerar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.BtnGerar.Cursor = System.Windows.Forms.Cursors.Default;
-            this.BtnGerar.Location = new System.Drawing.Point(849, 216);
-            this.BtnGerar.Name = "BtnGerar";
-            this.BtnGerar.Size = new System.Drawing.Size(105, 41);
-            this.BtnGerar.TabIndex = 1;
-            this.BtnGerar.Text = "Gerar Arquivo";
-            this.BtnGerar.UseVisualStyleBackColor = true;
-            this.BtnGerar.Click += new System.EventHandler(this.BtnGerar_Click);
+            this.LabelNomeLevantamento.AutoSize = true;
+            this.LabelNomeLevantamento.Location = new System.Drawing.Point(13, 3);
+            this.LabelNomeLevantamento.Name = "LabelNomeLevantamento";
+            this.LabelNomeLevantamento.Size = new System.Drawing.Size(89, 13);
+            this.LabelNomeLevantamento.TabIndex = 3;
+            this.LabelNomeLevantamento.Text = "Nome do Projeto:";
+            // 
+            // FileDialogImportarArquivo
+            // 
+            this.FileDialogImportarArquivo.FileName = "Selecione um levantamento";
+            this.FileDialogImportarArquivo.Filter = "Text files (*.xlsx)|*.xlsx";
+            this.FileDialogImportarArquivo.InitialDirectory = "C:\\Levantoso";
+            this.FileDialogImportarArquivo.Title = "Importar Levantamento";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(375, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(112, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Ctrl + N = Novo Grupo";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(519, 23);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(126, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Ctrl + I = Importar Arquivo";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(675, 23);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(119, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Ctrl + G = Gerar Arquivo";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(964, 269);
-            this.Controls.Add(this.BtnGerar);
-            this.Controls.Add(this.BtnNovoGrupo);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(964, 72);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.LabelNomeLevantamento);
+            this.Controls.Add(this.InputNomeLevantamento);
+            this.KeyPreview = true;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Levantoso";
-            this.Load += new System.EventHandler(this.MainForm_Load);
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button BtnNovoGrupo;
-        private System.Windows.Forms.Button BtnGerar;
+        private System.Windows.Forms.TextBox InputNomeLevantamento;
+        private System.Windows.Forms.Label LabelNomeLevantamento;
+        private System.Windows.Forms.OpenFileDialog FileDialogImportarArquivo;
+        private Label label1;
+        private Label label2;
+        private Label label3;
     }
 }
 

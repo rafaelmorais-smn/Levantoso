@@ -1,50 +1,115 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Levantoso.Forms.Group
 {
     public partial class GroupTable : UserControl
     {
-        public GroupTable(string nomeGrupo)
+        public byte SequencialGrupo;
+        public bool FormAberto { get; set; }
+        public string NomeGrupo { get; set; }
+
+        public GroupTable(string nomeGrupo, byte sequencialGrupo)
         {
             InitializeComponent();
             GroupBoxName.Text = nomeGrupo;
+            NomeGrupo = nomeGrupo;
+            SequencialGrupo = sequencialGrupo;
+            FormAberto = false;
         }
 
-        public void CancelarNovoItem()
+        public void AjustaPosicaoGruposAbaixo(int alturaForm)
         {
-            //var groupForme
-            //GroupBoxName.Height += groupForm.Height;
-            //Height += groupForm.Height;
-            //var mainForm = Application.OpenForms["MainForm"] as MainForm;
-            //if (mainForm != null)
-            //    mainForm.Height += groupForm.Height; grou
-        }
-
-        private void BtnNovoItem_Click(object sender, System.EventArgs e)
-        {
-            var groupForm = new GroupForm();
-            Controls.Add(groupForm);
-            var posicaoFinalTabela = TabelaGroup.Bottom;
-            groupForm.Top = posicaoFinalTabela + 15;
-            groupForm.Left = 15;
-            groupForm.BringToFront();
-            GroupBoxName.Height += groupForm.Height;
-            Height += groupForm.Height;
-            var mainForm = Application.OpenForms["MainForm"] as MainForm;
-            if (mainForm != null)
-                mainForm.Height += groupForm.Height;
-            groupForm.Show();
-        }
-
-        public void AdicionarDadosGrid(string item, string complexidade, string descricao)
-        {
-            if (string.IsNullOrEmpty(item) || string.IsNullOrEmpty(complexidade) || string.IsNullOrEmpty(descricao))
+            var grupos = BuscaMainForm().Grupos;
+            if (!grupos.Any(x => x.Item1 > SequencialGrupo))
                 return;
 
-            var dados = new ListViewItem(item);
-            dados.SubItems.Add(complexidade);
-            dados.SubItems.Add(descricao);
-            TabelaGroup.Items.Add(dados);
+            grupos = grupos.Where(x => x.Item1 > SequencialGrupo).ToList();
+            if (!grupos.Any())
+                return;
+
+            foreach (var grupo in grupos)
+                grupo.Item2.Top += alturaForm > 0 ? alturaForm + 10 : alturaForm - 10;
         }
+
+        public void AjustaPosicoes(int altura)
+        {
+            AjustaPosicaoGroup(altura);
+            AjustaPosicaoGruposAbaixo(altura);
+            AjustaPosicaoJanela(altura);
+        }
+
+        public void AjustaLargura(int largura)
+        {
+            Width = Convert.ToInt32(largura * 0.95);
+            var form = Controls["GroupForm"] as GroupForm;
+            form?.AjustaLargura(Width);
+        }
+
+        private void AjustaPosicaoGroup(int alturaForm)
+        {
+            alturaForm += alturaForm > 0 ? 10 : -10;
+            GroupBoxName.Height += alturaForm;
+            Height += alturaForm;
+        }
+
+        private static void AjustaPosicaoJanela(int alturaForm)
+        {
+            BuscaMainForm().Height += alturaForm > 0 ? alturaForm + 10 : alturaForm - 10;
+        }
+
+        private void BtnNovoItem_Click(object sender, EventArgs e)
+        {
+            if (FormAberto)
+                return;
+
+            var groupForm = new GroupForm(SequencialGrupo);
+            groupForm.AjustaPosicaoForm(TabelaGroup.Bottom);
+            Controls.Add(groupForm);
+            AjustaPosicoes(groupForm.Height);
+            groupForm.Show();
+            groupForm.BringToFront();
+            groupForm.AtribuiFoco();
+            groupForm.AjustaLargura(Width);
+            FormAberto = true;
+        }
+
+        private static MainForm BuscaMainForm()
+        {
+            var mainForm = Application.OpenForms["MainForm"] as MainForm;
+            if (mainForm == null)
+                throw new Exception();
+            return mainForm;
+        }
+
+        private void BtnRemoverGrupo_Click(object sender, EventArgs e)
+        {
+            var dialog = MessageBox.Show(@"Deseja realmente remover este grupo?", @"Atenção", MessageBoxButtons.YesNo);
+            if (dialog == DialogResult.No)
+                return;
+
+            var mainForm = BuscaMainForm();
+            var grupo = mainForm.Grupos.FirstOrDefault(x => x.Item1 == SequencialGrupo);
+            if (grupo == null)
+                throw new Exception();
+
+            mainForm.Grupos.Remove(grupo);
+            mainForm.Controls.Remove(grupo.Item2);
+            AjustaPosicoes(Height * -1);
+        }
+
+        private void TabelaGroup_KeyDown(object sender, KeyEventArgs e)
+        {
+            var dialog = MessageBox.Show(@"Deseja realmente remover este item?", @"Atenção", MessageBoxButtons.YesNo);
+            if (dialog == DialogResult.No)
+                return;
+
+            if (Keys.Delete != e.KeyCode)
+                return;
+
+            foreach (ListViewItem listViewItem in ((ListView)sender).SelectedItems)
+                listViewItem.Remove();
+        }    
     }
 }
