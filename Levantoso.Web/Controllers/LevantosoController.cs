@@ -1,22 +1,38 @@
-﻿using System.Web.Mvc;
+﻿using Levantoso.Excel;
+using Levantoso.Web.Excel;
+using Levantoso.Web.Models;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 
 namespace Levantoso.Web.Controllers
 {
     public class LevantosoController : Controller
     {
-        // GET: Levantoso
         public ActionResult Index() => View();
+        // public readonly List<Tuple<byte, GroupTable>> Grupos = new List<Tuple<byte, GroupTable>>();
 
         public ActionResult AbrirForm(string nome)
         {
             ViewBag.NomeGrupo = nome;
             return View("_gridDados");
         }
-        public ActionResult GerarTabela(string nomeTabela)
+
+        [HttpPost]
+        public ActionResult ExportarParaExcel(IEnumerable<GrupoModel> grupos)
         {
-            ViewBag.NomeTabela = nomeTabela;
-            return View("_gridTabelas");
+            string nomeArquivo = grupos.FirstOrDefault()?.NomeArquivo;
+            var excelContent = GeradorExcel.Gerar(grupos);
+            System.IO.File.WriteAllBytes($@"C:\Levantoso\" + nomeArquivo + ".xlsx", excelContent);
+            return View("_gridDados");
         }
 
+        [HttpPost]
+        public ActionResult Upload(HttpPostedFileBase file)
+        {
+            var grupos = LeitorExcel.Processar(file);
+            return View("_gridDados", grupos);
+        }
     }
 }
