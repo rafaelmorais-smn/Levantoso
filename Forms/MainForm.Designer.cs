@@ -30,6 +30,7 @@ namespace Levantoso.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.InputNomeLevantamento = new System.Windows.Forms.TextBox();
             this.LabelNomeLevantamento = new System.Windows.Forms.Label();
             this.FileDialogImportarArquivo = new System.Windows.Forms.OpenFileDialog();
@@ -99,6 +100,7 @@ namespace Levantoso.Forms
             this.Controls.Add(this.label1);
             this.Controls.Add(this.LabelNomeLevantamento);
             this.Controls.Add(this.InputNomeLevantamento);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
