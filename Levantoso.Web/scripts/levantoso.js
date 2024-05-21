@@ -20,6 +20,7 @@
                 $('#div-grid-tabela').show();
                 $('#input-file').hide();
                 $('#div-buton').show();
+                $('#div-file').hide();
             })
             .fail(function (error) {
                 console.error("Error fetching grid form content:", error);
@@ -37,6 +38,7 @@
                         '<td data-idItem="'+ idItem +'">' + item + '</td>' +
                         '<td data-idComplexidade="' + idComplexidade + '">' + complexidade + '</td>' +
                         '<td>' + descricao + '</td>' +
+                        '<td onclick="levantoso.deleteLinha(this)"><i class="material-icons">delete</i></td>'+
                     '</tr>';
 
         $('table#' + tableId).append(newCell);
@@ -72,6 +74,7 @@
             }
 
             grupos.push(grupo);
+            console.log(grupo);
         }
 
         $.ajax({
@@ -85,7 +88,6 @@
     }
 
     function importarArquivo() {
-        debugger;
         var file = $('#dataFile')[0].files[0];
         if (file) {
             var formData = new FormData();
@@ -108,11 +110,15 @@
         }
     }
     
+    var deleteLinha = function(btn) {
+        $(btn).closest('tr').remove();
+    }
     return {
         init: init,
         abrirFormulario: abrirFormulario,
         adicionarDadosTabela: adicionarDadosTabela,
         lerDadosTabela: lerDadosTabela,
-        importarArquivo: importarArquivo
+        importarArquivo: importarArquivo,
+        deleteLinha: deleteLinha
     };
 })();
