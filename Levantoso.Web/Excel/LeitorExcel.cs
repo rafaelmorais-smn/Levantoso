@@ -92,13 +92,11 @@ namespace Levantoso.Excel
             if (codigoItem.Length < 3)
                 throw new Exception("Item desconhecido");
 
-            var item = byte.Parse(codigoItem.Substring(0, 2));
-            var complexidade = byte.Parse(codigoItem[2].ToString());
-            var idItem = byte.Parse(codigoItem[2].ToString());
+            var idItem = byte.Parse(codigoItem.Substring(0, 2));
             var idComplexidade = byte.Parse(codigoItem[2].ToString());
 
-            var itemCombo = Itens.FirstOrDefault(x => x.Value == item).ToString();
-            var complexidadeCombo = Complexidades.FirstOrDefault(x => x.Value == complexidade).ToString();
+            var itemCombo = Itens.FirstOrDefault(x => x.Value == idItem).ToString();
+            var complexidadeCombo = Complexidades.FirstOrDefault(x => x.Value == idComplexidade).ToString();
 
             var resultado = new ItemLevantamentoModel(itemCombo, idItem, complexidadeCombo, idComplexidade, descricaoItem);
 

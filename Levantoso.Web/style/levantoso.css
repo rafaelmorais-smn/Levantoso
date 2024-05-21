@@ -31,13 +31,19 @@ td {
     background: white;
 }
 
-.input {
-    width: 50%;
-}
 #div-file {
     padding: 20px;
 }
 
 .btn {
     margin: 10px !important;
+}
+
+.input {
+    cursor: pointer;
+}
+
+#btn-adicionar {
+    justify-content: end;
+    display: flex
 }

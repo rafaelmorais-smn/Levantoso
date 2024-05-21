@@ -35,39 +35,41 @@
                 </table>
                 <div id="grid-form">
                     <form id="form-tabela">
-                        <div class="form-group" data-table="@item.NomeGrupo">
-                            <label>Item</label>
-                            <select class="form-control input item">
-                                <option value="0" selected>Selecione um Item</option>
-                                <option value="1">Tabela</option>
-                                <option value="2">Formulário</option>
-                                <option value="3">Procedure</option>
-                                <option value="4">JOB</option>
-                                <option value="5">Trigger</option>
-                                <option value="6">Função</option>
-                                <option value="7">Script</option>
-                                <option value="8">Modelagem</option>
-                                <option value="9">API</option>
-                                <option value="10">Console</option>
-                                <option value="11">PDF</option>
-                                <option value="12">Excel</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Complexidade</label>
-                            <select class="form-control input complexidade">
-                                <option value="0" selected>Selecione uma Complexidade</option>
-                                <option value="1">Simples</option>
-                                <option value="2">Médio</option>
-                                <option value="3">Complexo</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Descrição</label>
-                            <textarea class="form-control input descricao" placeholder="Digite uma Descrição" rows="3"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <i class="material-icons btn btn-primary" onclick="levantoso.adicionarDadosTabela(this);return false">add_circle_outline</i>
+                        <div class="container-sm row">
+                            <div class="form-group col-sm" data-table="@item.NomeGrupo">
+                                <label>Item</label>
+                                <select class="form-control input item">
+                                    <option value="0" selected>Selecione um Item</option>
+                                    <option value="1">Tabela</option>
+                                    <option value="2">Formulário</option>
+                                    <option value="3">Procedure</option>
+                                    <option value="4">JOB</option>
+                                    <option value="5">Trigger</option>
+                                    <option value="6">Função</option>
+                                    <option value="7">Script</option>
+                                    <option value="8">Modelagem</option>
+                                    <option value="9">API</option>
+                                    <option value="10">Console</option>
+                                    <option value="11">PDF</option>
+                                    <option value="12">Excel</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-sm">
+                                <label>Complexidade</label>
+                                <select class="form-control input complexidade">
+                                    <option value="0" selected>Selecione uma Complexidade</option>
+                                    <option value="1">Simples</option>
+                                    <option value="2">Médio</option>
+                                    <option value="3">Complexo</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Descrição</label>
+                                <textarea class="form-control input descricao" placeholder="Digite uma Descrição" rows="3"></textarea>
+                            </div>
+                            <div class="form-group" id="btn-adicionar">
+                                <i class="material-icons btn btn-primary" onclick="levantoso.adicionarDadosTabela(this);return false">add</i>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -90,40 +92,42 @@
             </table>
             <div id="grid-form">
                 <form id="form-tabela">
-                    <div class="form-group" data-table="@ViewBag.NomeGrupo">
-                        <label>Item</label>
-                        <select class="form-control input item">
-                            <option value="0" selected>Selecione um Item</option>
-                            <option value="1">Tabela</option>
-                            <option value="2">Formulário</option>
-                            <option value="3">PDF</option>
-                            <option value="4">Excel</option>
-                            <option value="5">Procedure</option>
-                            <option value="6">JOB</option>
-                            <option value="7">Trigger</option>
-                            <option value="8">Função</option>
-                            <option value="9">Script</option>
-                            <option value="10">Modelagem</option>
-                            <option value="11">API</option>
-                            <option value="12">Console</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Complexidade</label>
-                        <select class="form-control input complexidade">
-                            <option value="0" selected>Selecione uma Complexidade</option>
-                            <option value="1">Simples</option>
-                            <option value="2">Médio</option>
-                            <option value="3">Complexo</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Descrição</label>
-                        <textarea class="form-control input descricao" placeholder="Digite uma Descrição" rows="3"></textarea>
-                    </div>
-                    <div class="form-group">
+                    <div class="container-sm row">
+                        <div class="form-group col-sm" data-table="@ViewBag.NomeGrupo">
+                            <label>Item</label>
+                            <select class="form-control input item" placeholder="Item">
+                                <option value="0" selected>Selecione um Item</option>
+                                <option value="1">Tabela</option>
+                                <option value="2">Formulário</option>
+                                <option value="3">PDF</option>
+                                <option value="4">Excel</option>
+                                <option value="5">Procedure</option>
+                                <option value="6">JOB</option>
+                                <option value="7">Trigger</option>
+                                <option value="8">Função</option>
+                                <option value="9">Script</option>
+                                <option value="10">Modelagem</option>
+                                <option value="11">API</option>
+                                <option value="12">Console</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm">
+                            <label>Complexidade</label>
+                            <select class="form-control input complexidade" placeholder="Complexidade">
+                                <option value="0" selected>Selecione uma Complexidade</option>
+                                <option value="1">Simples</option>
+                                <option value="2">Médio</option>
+                                <option value="3">Complexo</option>
+                            </select>
+                        </div>
                         <div class="form-group">
-                            <i class="material-icons btn btn-primary" onclick="levantoso.adicionarDadosTabela(this);return false">add_circle_outline</i>
+                            <label>Descrição</label>
+                            <textarea class="form-control input descricao" placeholder="Digite uma Descrição" rows="3"></textarea>
+                        </div>
+                        <div class="form-group" id="btn-adicionar">
+                            <div class="form-group">
+                                <i class="material-icons btn btn-primary" onclick="levantoso.adicionarDadosTabela(this);return false">add</i>
+                            </div>
                         </div>
                     </div>
                 </form>

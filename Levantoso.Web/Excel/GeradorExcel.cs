@@ -100,7 +100,7 @@ namespace Levantoso.Web.Excel
                     celulaCodigo.Value = $"{itemLevantamento.IdItem:00}{itemLevantamento.IdComplexidade}";
                     celulaCodigo.Style.Font.Color.SetColor(Color.White);
 
-                    ws.Cells[linha, 2].Value = $"{itemLevantamento.IdItem} {itemLevantamento.IdComplexidade} {itemLevantamento.Descricao}";
+                    ws.Cells[linha, 2].Value = $"{itemLevantamento.Descricao}";
                 }
             }
 
