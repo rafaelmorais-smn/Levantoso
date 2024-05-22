@@ -11,7 +11,6 @@ namespace Levantoso.Web.Controllers
     public class LevantosoController : Controller
     {
         public ActionResult Index() => View();
-        // public readonly List<Tuple<byte, GroupTable>> Grupos = new List<Tuple<byte, GroupTable>>();
 
         public ActionResult AbrirForm(string nome)
         {
@@ -24,8 +23,7 @@ namespace Levantoso.Web.Controllers
         {
             string nomeArquivo = grupos.FirstOrDefault()?.NomeArquivo;
             var excelContent = GeradorExcel.Gerar(grupos);
-            System.IO.File.WriteAllBytes($@"C:\Levantoso\" + nomeArquivo + ".xlsx", excelContent);
-            return View("_gridDados");
+            return File(excelContent, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", nomeArquivo + ".xlsx");
         }
 
         [HttpPost]
@@ -34,5 +32,6 @@ namespace Levantoso.Web.Controllers
             var grupos = LeitorExcel.Processar(file);
             return View("_gridDados", grupos);
         }
+
     }
 }

@@ -91,10 +91,20 @@
             type: 'POST',
             contentType: 'application/json',
             url: config.urls.exportarParaExcel,
-            data: JSON.stringify(grupos)
-        }).done(function(data) {
-            alert("Exportado com Sucesso! Check a Pasta de Destino");
-        }).fail(function(error) {
+            data: JSON.stringify(grupos),
+            xhrFields: {
+                responseType: 'blob'
+            }
+        }).done(function (blob) {
+            var url = window.URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = nomeArquivo + ".xlsx";
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        }).fail(function (error) {
             console.log("Error fetching grid form content: " + error);
         });
     }
