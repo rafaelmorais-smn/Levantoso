@@ -180,11 +180,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-<<<<<<< HEAD
-    <None Include="Properties\PublishProfiles\publish.pubxml" />
-=======
-    <None Include="Properties\PublishProfiles\main.pubxml" />
->>>>>>> 40c372d994199cb54573a46a5c414d47b2cc859e
     <None Include="scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="scripts\jquery-2.1.1.js" />
     <Content Include="scripts\jquery-2.1.1.min.js" />
