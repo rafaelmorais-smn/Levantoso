@@ -45,8 +45,8 @@
                         '<td id="item" data-idItem="' + idItem + '">' + item + '</td>' +
                         '<td id="complexidade" data-idComplexidade="' + idComplexidade + '">' + complexidade + '</td>' +
                         '<td id="descricao">' + descricao + '</td>' +
-                        '<td onclick="levantoso.deleteLinha(this)"><i class="material-icons">edit</i></td>' +
-                        '<td onclick="levantoso.editarLinhas(this)"><i class="material-icons">delete</i></td>' +
+                        '<td onclick="levantoso.editarLinhas(this)"><i class="material-icons">edit</i></td>' +
+                        '<td onclick="levantoso.deleteLinha(this)"><i class="material-icons">delete</i></td>' +
                     '</tr>';
             table.append(newCell);
             form.find('textarea').val('');
