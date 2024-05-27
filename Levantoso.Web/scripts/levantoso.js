@@ -28,8 +28,8 @@
             });
     }
     const adicionarDadosTabela = function (btn) {
-        debugger;
         const form = $(btn).closest('form#form-tabela');
+        const table = $(btn).closest('div#grid-tabela').find('table').find('tbody');
         const item = $(btn).closest('form#form-tabela').find('select.form-control.input.item option:selected').text();
         const idItem = $(btn).closest('form#form-tabela').find('select.form-control.input.item').val();
         const complexidade = $(btn).closest('form#form-tabela').find('select.form-control.input.complexidade option:selected').text();
@@ -41,21 +41,20 @@
         if (idComplexidade === "0")
             return alert('Selecione uma Complexidade');
 
-        const tableId = $(btn).closest('form#form-tabela').find('[data-table]').data('table');
         const newCell = '<tr>' +
-                        '<td data-idItem="'+ idItem +'">' + item + '</td>' +
-                        '<td data-idComplexidade="' + idComplexidade + '">' + complexidade + '</td>' +
-                        '<td>' + descricao + '</td>' +
-                        '<td onclick="levantoso.deleteLinha(this)"><i class="material-icons">delete</i></td>'+
+                        '<td id="item" data-idItem="' + idItem + '">' + item + '</td>' +
+                        '<td id="complexidade" data-idComplexidade="' + idComplexidade + '">' + complexidade + '</td>' +
+                        '<td id="descricao">' + descricao + '</td>' +
+                        '<td onclick="levantoso.deleteLinha(this)"><i class="material-icons">edit</i></td>' +
+                        '<td onclick="levantoso.editarLinhas(this)"><i class="material-icons">delete</i></td>' +
                     '</tr>';
-            $('table#' + tableId).append(newCell);
+            table.append(newCell);
             form.find('textarea').val('');
             form.find('select.form-control [value="0"]').prop('selected', true);
 
     }
 
     function lerDadosTabela(nomeArquivo) {
-        debugger;
         const tabelas = $("#grid-tabela table");
         const grupos = [];
         for (let tabela of tabelas) {
@@ -137,12 +136,29 @@
     var deleteLinha = function(btn) {
         $(btn).closest('tr').remove();
     }
+
+    var editarLinhas = function(btn) {
+        const item = $(btn).closest('tr').find('#item').data('iditem');
+        const complexidade = $(btn).closest('tr').find('#complexidade').data('idcomplexidade');
+        const descricao = $(btn).closest('tr').find('#descricao').text();
+
+        $(btn).closest('div#container').find('form#form-tabela select.form-control.input.item').val(item);
+        $(btn).closest('div#container').find('form#form-tabela').find('select.form-control.input.complexidade').val(complexidade);
+        $(btn).closest('div#container').find('form#form-tabela').find('textarea.form-control.input.descricao').val(descricao);
+        $(btn).closest('tr').remove();
+    }
+
+    var apagarTabela = function(btn) {
+        $(btn).closest('div#container').remove();
+    }
     return {
         init: init,
         abrirFormulario: abrirFormulario,
         adicionarDadosTabela: adicionarDadosTabela,
         lerDadosTabela: lerDadosTabela,
         importarArquivo: importarArquivo,
-        deleteLinha: deleteLinha
+        deleteLinha: deleteLinha,
+        editarLinhas: editarLinhas,
+        apagarTabela: apagarTabela
     };
 })();
