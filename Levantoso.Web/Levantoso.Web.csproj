@@ -228,7 +228,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\GroupTable.cs" />
     <Compile Include="Controllers\LevantosoController.cs" />
     <Compile Include="Excel\GeradorExcel.cs" />
     <Compile Include="Excel\LeitorExcel.cs" />
