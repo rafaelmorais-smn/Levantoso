@@ -10,14 +10,17 @@
         {
             foreach (var item in Model)
             {
-                <h3>@item.NomeGrupo</h3>
-
-                <table class="table table-striped" id="@item.NomeGrupo">
+                <div>
+                    <h3>@ViewBag.NomeGrupo</h3>
+                    <i class="material-icons" onclick="levantoso.apagarTabela(this)">delete</i>
+                </div>
+                <table class="table table-striped @item.NomeGrupo" id="@item.NomeGrupo">
                     <thead>
                         <tr>
                             <th scope="col">Item</th>
                             <th scope="col">Complexidade</th>
                             <th scope="col">Descrição</th>
+                            <th scope="col"></th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
@@ -25,9 +28,10 @@
                         @foreach (var subItem in item.Itens)
                     {
                             <tr>
-                                <td data-idItem="@subItem.IdItem">@subItem.Item</td>
-                                <td data-IdComplexidade="@subItem.IdComplexidade">@subItem.Complexidade</td>
-                                <td>@subItem.Descricao</td>
+                                <td id="item" data-idItem="@subItem.IdItem">@subItem.Item</td>
+                                <td id="complexidade" data-IdComplexidade="@subItem.IdComplexidade">@subItem.Complexidade</td>
+                                <td id="descricao">@subItem.Descricao</td>
+                                <td onclick="levantoso.editarLinhas(this)"><i class="material-icons">edit</i></td>
                                 <td onclick="levantoso.deleteLinha(this)"><i class="material-icons">delete</i></td>
                             </tr>
                         }
@@ -77,15 +81,18 @@
         }
         else
         {
-            <h3>@ViewBag.NomeGrupo</h3>
-            <table class="table table-striped" id="@ViewBag.NomeGrupo">
+            <div>
+                <h3>@ViewBag.NomeGrupo</h3>
+                <i class="material-icons" onclick="levantoso.apagarTabela(this)">delete</i>
+            </div>
+            <table class="table table-striped @ViewBag.NomeGrupo" id="@ViewBag.NomeGrupo">
                 <thead>
                     <tr>
                         <th scope="col">Item</th>
                         <th scope="col">Complexidade</th>
                         <th scope="col">Descrição</th>
                         <td></td>
-
+                        <td></td>
                     </tr>
                 </thead>
                 <tbody></tbody>
