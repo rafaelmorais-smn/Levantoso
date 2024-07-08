@@ -1,7 +1,6 @@
 ﻿using Levantoso.Lists;
 using Levantoso.Models;
 using OfficeOpenXml;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -84,8 +83,7 @@ namespace Levantoso.Excel
 
         private static ItemLevantamentoModel MontaItemLevantamento(this string codigoItem, string descricaoItem)
         {
-            if (codigoItem.Length < 3)
-                throw new Exception("Item desconhecido");
+            codigoItem = codigoItem.PadLeft(3, '0');
 
             var item = byte.Parse(codigoItem.Substring(0, 2));
             var complexidade = byte.Parse(codigoItem[2].ToString());
