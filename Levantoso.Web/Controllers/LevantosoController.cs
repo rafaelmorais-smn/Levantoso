@@ -1,8 +1,7 @@
-﻿using Levantoso.Excel;
-using Levantoso.Web.Excel;
-using Levantoso.Web.Models;
+﻿using Levantoso.Domain.Excel;
+using Levantoso.Domain.Models;
+using Levantoso.Web.ViewModel;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
@@ -12,26 +11,29 @@ namespace Levantoso.Web.Controllers
     {
         public ActionResult Index() => View();
 
-        public ActionResult AbrirForm(string nome)
+        public ActionResult AbrirGrupo(string nomeGrupo)
         {
-            ViewBag.NomeGrupo = nome;
-            return View("_gridDados");
+            return View("_Grid", new List<GrupoModel> { new GrupoModel(nomeGrupo) });
         }
 
         [HttpPost]
-        public ActionResult ExportarParaExcel(IEnumerable<GrupoModel> grupos)
+        public ActionResult NovaLinhaGrid(ItemLevantamentoModel item)
         {
-            string nomeArquivo = grupos.FirstOrDefault()?.NomeArquivo;
-            var excelContent = GeradorExcel.Gerar(grupos);
-            return File(excelContent, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", nomeArquivo + ".xlsx");
+            return View("_RowGrid", item);
+        }
+
+        [HttpPost]
+        public ActionResult ExportarParaExcel(ExportarExcelViewModel exportacao)
+        {
+            var excelContent = GeradorExcel.GerarPeloWeb(exportacao.Grupos);
+            return File(excelContent, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", exportacao.NomeArquivo + ".xlsx");
         }
 
         [HttpPost]
         public ActionResult Upload(HttpPostedFileBase file)
         {
-            var grupos = LeitorExcel.Processar(file);
-            return View("_gridDados", grupos);
+            var grupos = LeitorExcel.Processar(file?.InputStream);
+            return View("_Grid", grupos);
         }
-
     }
 }

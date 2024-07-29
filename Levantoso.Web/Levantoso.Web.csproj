@@ -59,10 +59,6 @@
       <HintPath>..\packages\DocumentFormat.OpenXml.Framework.3.0.2\lib\net40\DocumentFormat.OpenXml.Framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EPPlus, Version=4.0.3.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
-      <HintPath>..\packages\EPPlus.4.0.3\lib\net20\EPPlus.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="EPPlus.Interfaces, Version=6.1.1.0, Culture=neutral, PublicKeyToken=a694d7f3b0907a61, processorArchitecture=MSIL">
       <HintPath>..\packages\EPPlus.Interfaces.6.1.1\lib\net35\EPPlus.Interfaces.dll</HintPath>
       <Private>True</Private>
@@ -184,16 +180,15 @@
     <Content Include="scripts\jquery-2.1.1.js" />
     <Content Include="scripts\jquery-2.1.1.min.js" />
     <Content Include="scripts\nugetexample.js" />
-    <Content Include="style\levantoso.css" />
+    <Content Include="Lib\levantoso.css" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\web.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Excel\Modelo.xlsx" />
     <Content Include="scripts\jquery-2.1.1.min.map" />
+    <Content Include="Views\Levantoso\_RowGrid.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -217,33 +212,32 @@
     <Content Include="scripts\jquery.validate.min.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="scripts\levantoso.js" />
+    <Content Include="Lib\levantoso.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Levantoso\Index.cshtml" />
-    <Content Include="Views\Levantoso\_gridDados.cshtml" />
+    <Content Include="Views\Levantoso\_Grid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\LevantosoController.cs" />
-    <Compile Include="Excel\GeradorExcel.cs" />
-    <Compile Include="Excel\LeitorExcel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Lists\ComboItem.cs" />
-    <Compile Include="Lists\ComplexidadeList.cs" />
-    <Compile Include="Lists\ItemList.cs" />
-    <Compile Include="Models\GrupoModel.cs" />
-    <Compile Include="Models\ItemLevantamentoAgrupadoModel.cs" />
-    <Compile Include="Models\ItemLevantamentoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\Nome.cs" />
+    <Compile Include="ViewModel\ExportarExcelViewModel.cs" />
+    <Compile Include="ViewModel\GridViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Levantoso.Domain\Levantoso.Domain.csproj">
+      <Project>{1534B0D3-E228-4D34-A0C6-7B234D56292B}</Project>
+      <Name>Levantoso.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

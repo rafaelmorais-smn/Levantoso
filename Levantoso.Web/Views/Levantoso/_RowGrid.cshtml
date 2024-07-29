@@ -1,0 +1,16 @@
+﻿@model Levantoso.Domain.Models.ItemLevantamentoModel
+@{
+    Layout = null;
+}
+
+<tr>
+    <td id="item" data-value="@Model.Item.Value">@Model.Item.Text</td>
+    <td id="complexidade" data-value="@Model.Complexidade.Value">@Model.Complexidade.Text</td>
+    <td id="descricao">@Model.Descricao</td>
+    <td class="td-btn">
+        <button class="btn btn-grid" onclick="levantoso.editarLinhas(this)"><i class="material-icons">edit</i></button>
+    </td>
+    <td>
+        <button class="btn btn-grid" onclick="levantoso.deleteLinha(this)"><i class="material-icons">delete</i></button>
+    </td>
+</tr>
