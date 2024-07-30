@@ -11,6 +11,8 @@ namespace Levantoso.Domain.Excel
 {
     public static class GeradorExcel
     {
+        private const byte QuantidadeLinhasQuadro = 19;
+        private const string RangeCelulasQuadro = "A2:H17";
         public static byte[] GerarPeloWinForm(IEnumerable<GrupoModel> grupos) => Gerar(grupos, AppDomain.CurrentDomain.BaseDirectory);
         public static byte[] GerarPeloWeb(IEnumerable<GrupoModel> grupos) => Gerar(grupos, AppDomain.CurrentDomain.RelativeSearchPath);
 
@@ -66,10 +68,10 @@ namespace Levantoso.Domain.Excel
             if (quantidade <= 1)
                 return;
 
-            var parteCopiada = ws.Cells["A2:H18"];
+            var parteCopiada = ws.Cells[RangeCelulasQuadro];
             for (var i = 1; i < quantidade; i++)
             {
-                var linhaColagem = 20 * i;
+                var linhaColagem = QuantidadeLinhasQuadro * i;
                 parteCopiada.Copy(ws.Cells[$"A{linhaColagem}"]);
             }
         }
@@ -77,14 +79,21 @@ namespace Levantoso.Domain.Excel
         private static void PreecheQuantidadesGrupo(this ExcelWorksheet ws, byte numeroGrupo, string nomeGrupo, 
             IEnumerable<ItemLevantamentoAgrupadoModel> grupo)
         {
-            var linhaInicio = 20 * numeroGrupo;
+            var linhaInicio = QuantidadeLinhasQuadro * numeroGrupo;
             if (linhaInicio == 0)
                 linhaInicio = 2;
 
-            ws.Cells[linhaInicio + 3, 1].Value = nomeGrupo;
+            linhaInicio += 3; // linhas do header do quadro
+            ws.Cells[linhaInicio, 1].Value = nomeGrupo;
 
             foreach (var item in grupo.OrderBy(x => x.CodigoItem).ThenBy(x => x.CodigoComplexidade))
-                ws.Cells[linhaInicio + 3 + item.CodigoItem, item.CodigoComplexidade + 2].Value = item.Quantidade;
+            {
+                var linha = linhaInicio + item.CodigoItem;
+                if (item.CodigoItem > 1) // devido a juncao dos itens de formulario e tabela
+                    linha -= 1;
+
+                ws.Cells[linha, item.CodigoComplexidade + 2].Value = item.Quantidade;
+            }
         }
 
         private static void MontaAbaItens(this ExcelPackage ep, IEnumerable<GrupoModel> grupos)
