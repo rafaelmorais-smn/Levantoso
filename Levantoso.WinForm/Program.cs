@@ -1,8 +1,8 @@
-﻿using Levantoso.Forms;
-using System;
+﻿using System;
 using System.Windows.Forms;
+using Levantoso.WinForm.Forms;
 
-namespace Levantoso
+namespace Levantoso.WinForm
 {
     internal static class Program
     {

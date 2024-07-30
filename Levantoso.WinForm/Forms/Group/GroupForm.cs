@@ -1,10 +1,10 @@
-﻿using Levantoso.Domain.Lists;
-using Levantoso.Domain.Models;
-using System;
+﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using Levantoso.Domain.Lists;
+using Levantoso.Domain.Models;
 
-namespace Levantoso.Forms.Group
+namespace Levantoso.WinForm.Forms.Group
 {
     public partial class GroupForm : UserControl
     {

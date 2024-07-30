@@ -1,4 +1,4 @@
-﻿namespace Levantoso.Forms.Group
+﻿namespace Levantoso.WinForm.Forms.Group
 {
     partial class GroupForm
     {

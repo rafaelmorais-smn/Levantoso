@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Levantoso.Forms
+namespace Levantoso.WinForm.Forms
 {
     public partial class CreateGroupForm : Form
     {

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Levantoso.Forms.Group
+namespace Levantoso.WinForm.Forms.Group
 {
     public partial class GroupTable : UserControl
     {

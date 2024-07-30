@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Levantoso.Web", "Levantoso.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Levantoso.Domain", "Levantoso.Domain\Levantoso.Domain.csproj", "{1534B0D3-E228-4D34-A0C6-7B234D56292B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Levantoso", "Levantoso.Form\Levantoso.csproj", "{EC23083F-0921-4A41-911E-649F57DD1053}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Levantoso.WinForm", "Levantoso.WinForm\Levantoso.WinForm.csproj", "{EC23083F-0921-4A41-911E-649F57DD1053}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

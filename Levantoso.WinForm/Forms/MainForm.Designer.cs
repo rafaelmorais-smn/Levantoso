@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace Levantoso.Forms
+namespace Levantoso.WinForm.Forms
 {
     partial class MainForm
     {
