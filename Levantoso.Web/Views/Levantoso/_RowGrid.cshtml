@@ -4,13 +4,13 @@
 }
 
 <tr>
-    <td id="item" data-value="@Model.Item.Value">@Model.Item.Text</td>
-    <td id="complexidade" data-value="@Model.Complexidade.Value">@Model.Complexidade.Text</td>
+    <td class="td-no-description" id="item" data-value="@Model.Item.Value">@Model.Item.Text</td>
+    <td class="td-no-description" id="complexidade" data-value="@Model.Complexidade.Value">@Model.Complexidade.Text</td>
     <td id="descricao">@Model.Descricao</td>
     <td class="td-btn">
-        <button class="btn btn-grid" onclick="levantoso.editarLinhas(this)"><i class="material-icons">edit</i></button>
+        <button class="btn btn-grid" onclick="levantoso.editarItem(this)"><i class="material-icons">edit</i></button>
     </td>
-    <td>
-        <button class="btn btn-grid" onclick="levantoso.deleteLinha(this)"><i class="material-icons">delete</i></button>
+    <td class="td-btn">
+        <button class="btn btn-grid" onclick="levantoso.deletarItem(this)"><i class="material-icons">delete</i></button>
     </td>
 </tr>

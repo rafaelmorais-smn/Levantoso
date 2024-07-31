@@ -11,65 +11,67 @@
         {
             foreach (var grupo in Model)
             {
-                <div style="display: flex">
-                    <h3 style="width: 93%">@grupo.NomeGrupo</h3>
-                    <button type="button" class="btn btn-danger" onclick="levantoso.apagarTabela(this)">
-                        <i class="material-icons">delete</i>
-                    </button>
-                </div>
-                <table class="table table-striped @grupo.NomeGrupo" id="@grupo.NomeGrupo">
-                    <thead>
-                        <tr>
-                            <th scope="col">Item</th>
-                            <th scope="col">Complexidade</th>
-                            <th scope="col">Descrição</th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (grupo.Itens != null)
-                        {
-                            foreach (var item in grupo.Itens)
+                <div class="quadro-grupo">
+                    <div style="display: flex">
+                        <h3 style="width: 93%">@grupo.NomeGrupo</h3>
+                        <button type="button" class="btn btn-danger" onclick="levantoso.apagarTabela(this)">
+                            <i class="material-icons">delete</i>
+                        </button>
+                    </div>
+                    <table class="table table-striped @grupo.NomeGrupo" id="@grupo.NomeGrupo">
+                        <thead>
+                            <tr>
+                                <th scope="col">Item</th>
+                                <th scope="col">Complexidade</th>
+                                <th scope="col">Descrição</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (grupo.Itens != null)
                             {
-                                @Html.Partial("_RowGrid", item)
+                                foreach (var item in grupo.Itens)
+                                {
+                                    @Html.Partial("_RowGrid", item)
+                                }
                             }
-                        }
-                    
-                    </tbody>
-                </table>
-                <div id="grid-form">
-                    <form id="form-tabela">
-                        <div class="container-sm row">
-                            <div class="form-group col-sm" data-table="@grupo.NomeGrupo">
-                                <label>Item</label>
-                                <select class="form-control input item" required>
-                                    @foreach (var itemCombo in ItemList.ComboValues)
-                                    {
-                                        <option value="@itemCombo.Value">@itemCombo.Text</option>
-                                    }
-                                </select>
+
+                        </tbody>
+                    </table>
+                    <div id="grid-form">
+                        <form id="form-tabela">
+                            <div class="container-sm row">
+                                <div class="form-group col-sm" data-table="@grupo.NomeGrupo">
+                                    <label>Item</label>
+                                    <select class="form-control input item" required>
+                                        @foreach (var itemCombo in ItemList.ComboValues)
+                                        {
+                                            <option value="@itemCombo.Value">@itemCombo.Text</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group col-sm">
+                                    <label>Complexidade</label>
+                                    <select class="form-control input complexidade" required>
+                                        @foreach (var complexidade in ComplexidadeList.ComboValues)
+                                        {
+                                            <option value="@complexidade.Value">@complexidade.Text</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Descrição</label>
+                                    <textarea class="form-control input descricao" required placeholder="Digite uma Descrição" rows="3"></textarea>
+                                </div>
+                                <div class="form-group" id="btn-adicionar">
+                                    <button type="button" class="btn btn-primary" onclick="levantoso.adicionarDadosTabela(this);">
+                                        <i class="material-icons">add</i>
+                                    </button>
+                                </div>
                             </div>
-                            <div class="form-group col-sm">
-                                <label>Complexidade</label>
-                                <select class="form-control input complexidade" required>
-                                    @foreach (var complexidade in ComplexidadeList.ComboValues)
-                                    {
-                                        <option value="@complexidade.Value">@complexidade.Text</option>
-                                    }
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Descrição</label>
-                                <textarea class="form-control input descricao"required placeholder="Digite uma Descrição" rows="3"></textarea>
-                            </div>
-                            <div class="form-group" id="btn-adicionar">
-                                <button type="button" class="btn btn-primary" onclick="levantoso.adicionarDadosTabela(this);">
-                                    <i class="material-icons" >add</i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             }
         }

@@ -21,8 +21,8 @@
             $('#div-grid-tabela').append(data).show();
             $('#input-file, #div-file').hide();
             $('#div-buton').show();
-            setTimeout(function() {
-                $('div[data-table="' + nomeGrupo + '"]').trigger('focus');
+            setTimeout(function () {
+                $('div[data-table="' + nomeGrupo + '"] select.item').focus();
                 $('#nomeGrupo').val('');
             }, 500);
         }).fail(function(error) {
@@ -69,8 +69,9 @@
             data: JSON.stringify({ item: model }),
             dataType: 'html'
         }).done(function (newRow) {
-            $(btn).closest('div#grid-tabela').find('table tbody').append('' + newRow +'');
+            $(btn).closest('div.quadro-grupo').find('table tbody').append('' + newRow +'');
             form.trigger('reset');
+            comboItem.focus();
         }).fail(function(xhr) {
             console.error('Falha ao carregar nova linha pro grid:', xhr.responseText);
         });
@@ -154,25 +155,29 @@
                     $('#input-file').hide();
                     $('#div-buton').show();
                     $('#div-file').hide();
-                    alert("Aquivo Importado Com Sucesso");
+                    alert('Aquivo Importado Com Sucesso');
                 },
-                error: function() {
+                error: function (xhr) {
+                    console.log('Falha ao importar arquivo: ' + xhr.responseText);
                 }
             });
         }
     }
 
-    var deleteLinha = function(btn) {
-        $(btn).closest('tr').remove();
+    var deletarItem = function(btn) {
+        if (confirm('Tem certeza que deseja remover o item?'))
+            $(btn).closest('tr').remove();
     };
 
-    var editarLinhas = function(btn) {
+    var editarItem = function(btn) {
         var tr = $(btn).closest('tr'),
-            form = $(btn).closest('div#container form#form-tabela');
+            form = $(btn).closest('div.quadro-grupo').find('form#form-tabela');
+
+
 
         form.find('select.item').val(tr.find('td#item').data('value'));
         form.find('select.complexidade').val(tr.find('td#complexidade').data('value'));
-        form.find('textarea.descricao').val(tr.find('#descricao').text());
+        form.find('textarea.descricao').val(tr.find('#descricao').text()).focus();
         tr.remove();
     };
 
@@ -187,8 +192,8 @@
         adicionarDadosTabela: adicionarDadosTabela,
         lerDadosTabela: lerDadosTabela,
         importarArquivo: importarArquivo,
-        deleteLinha: deleteLinha,
-        editarLinhas: editarLinhas,
+        deletarItem: deletarItem,
+        editarItem: editarItem,
         apagarTabela: apagarTabela,
         aberturaNovaTabela: aberturaNovaTabela,
     };

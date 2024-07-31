@@ -1,18 +1,16 @@
 ﻿body {
     background: black;
     font-family: sans-serif;
+    font-size: 0.9em !important;
 }
 #container-tudo {
     background: darkgrey;
-    max-width: 900px;
-    margin-left: 500px;
+    max-width: 90%;
     text-align: center;
 }
 #grid-form {
     text-align: start;
-}
-.inputs {
-    width: 100px;
+    border: 1px solid black;
 }
 
 th {
@@ -21,10 +19,6 @@ th {
 
 td {
     border-bottom: 1px black solid;
-}
-
-#grid-form {
-    border: 1px solid black;
 }
 
 #armazenamento {
@@ -54,4 +48,8 @@ button.btn-grid {
 
 td.td-btn {
     width: 6%;
+}
+
+td.td-no-description {
+    width: 10px;
 }
