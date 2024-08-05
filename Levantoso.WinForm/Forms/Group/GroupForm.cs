@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Levantoso.Domain.Lists;
+using Levantoso.Domain.Models;
+using System;
 using System.Linq;
 using System.Windows.Forms;
-using Levantoso.Domain.Lists;
-using Levantoso.Domain.Models;
 
 namespace Levantoso.WinForm.Forms.Group
 {
@@ -58,7 +58,7 @@ namespace Levantoso.WinForm.Forms.Group
 
             var linha = new ListViewItem(new[] {item.Text, complexidade.Text, InputDescricao.Text})
             {
-                Tag = new ItemLevantamentoModel(item, complexidade, InputDescricao.Text)
+                Tag = new ItemLevantamentoModel(null, item, complexidade, InputDescricao.Text)
             };
 
             var grupo = BuscaGrupo();

@@ -22,26 +22,31 @@
             $('#input-file, #div-file').hide();
             $('#div-buton').show();
             setTimeout(function () {
-                $('div[data-table="' + nomeGrupo + '"] select.item').focus();
+                $('select[data-table="' + nomeGrupo + '"].tipo-operacao').focus();
                 $('#nomeGrupo').val('');
-            }, 500);
+            }, 200);
         }).fail(function(error) {
             console.error("Error fetching grid form content:", error);
         });
     };
 
-    var aberturaNovaTabela = function() {
+    var atribuirFocoNoInputDaModal = function(idInput) {
         setTimeout(function() {
-            $('input#nomeGrupo').focus();
-        }, 500);
+            $('input#' + idInput).focus();
+        }, 250);
     };
 
     var adicionarDadosTabela = function (btn) {
         var form = $(btn).closest('form#form-tabela');
-        var comboItem = form.find('select.item'),
+        var comboTipoOperacao = form.find('select.tipo-operacao'),
+            comboItem = form.find('select.item'),
             comboComplexidade = form.find('select.complexidade');
 
         var model = {
+            TipoOperacao: {
+                Value: +comboTipoOperacao.val(),
+                Text: comboTipoOperacao.find('option:selected').text()
+            },
             Item: {
                 Value: +comboItem.val(),
                 Text: comboItem.find('option:selected').text()
@@ -52,6 +57,9 @@
             },
             Descricao: form.find('textarea.descricao').val()
         };
+
+        if (!model.TipoOperacao.Value)
+            return alert('Selecione o tipo da operação');
 
         if (!model.Item.Value)
             return alert('Selecione um item');
@@ -73,7 +81,7 @@
                 bodyTabela = $(btn).closest('div.quadro-grupo').find('table tbody');
             insereLinhaConsiderandoPosicaoAnterior(posicaoGrid, bodyTabela, newRow);
             form.trigger('reset').data('posicao-grid', '');
-            comboItem.focus();
+            comboTipoOperacao.focus();
         }).fail(function(xhr) {
             console.error('Falha ao carregar nova linha pro grid:', xhr.responseText);
         });
@@ -96,10 +104,15 @@
 
         $(tabela).find('tbody tr').each(function() {
             var linha = $(this);
-            var colunaItem = $(linha).find('td#item'),
-                colunaComplexidade = $(linha).find('td#complexidade');
+            var colunaTipoOperacao = $(linha).find('td.tipo-operacao'),
+                colunaItem = $(linha).find('td.item'),
+                colunaComplexidade = $(linha).find('td.complexidade');
 
             grupo.Itens.push({
+                TipoOperacao: {
+                    Value: colunaTipoOperacao.data('value'),
+                    Text: colunaTipoOperacao.text()
+                },
                 Item: {
                     Value: colunaItem.data('value'),
                     Text: colunaItem.text()
@@ -108,7 +121,7 @@
                     Value: colunaComplexidade.data('value'),
                     Text: colunaComplexidade.text()
                 },
-                Descricao: $(linha).find('td#descricao').text(),
+                Descricao: $(linha).find('td.descricao').text(),
             });
         });
 
@@ -186,9 +199,11 @@
 
         var posicaoGrid = tr.index();
         form.data('posicao-grid', posicaoGrid);
-        form.find('select.item').val(tr.find('td#item').data('value'));
-        form.find('select.complexidade').val(tr.find('td#complexidade').data('value'));
-        form.find('textarea.descricao').val(tr.find('#descricao').text()).focus();
+
+        ['tipo-operacao', 'item', 'complexidade'].forEach(function (seletorClasse) {
+            form.find('select.' + seletorClasse).val(tr.find('td.' + seletorClasse).data('value'));
+        });
+        form.find('textarea.descricao').val(tr.find('td.descricao').text()).focus();
         tr.remove();
     };
 
@@ -206,6 +221,6 @@
         deletarItem: deletarItem,
         editarItem: editarItem,
         apagarTabela: apagarTabela,
-        aberturaNovaTabela: aberturaNovaTabela,
+        atribuirFocoNoInputDaModal: atribuirFocoNoInputDaModal,
     };
 })();

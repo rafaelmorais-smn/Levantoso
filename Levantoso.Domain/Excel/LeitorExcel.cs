@@ -1,6 +1,7 @@
 ﻿using Levantoso.Domain.Lists;
 using Levantoso.Domain.Models;
 using OfficeOpenXml;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -14,10 +15,9 @@ namespace Levantoso.Domain.Excel
         private static bool _umaLinhaVazia;
         private static bool _duasLinhasVazias;
         private static Collection<GrupoModel> _grupos;
+        private static readonly IEnumerable<ComboItem> TiposOperacoes = TipoOperacaoList.ComboValues.Where(x => x.Value > 0);
         private static readonly IEnumerable<ComboItem> Itens = ItemList.ComboValues.Where(x => x.Value > 0);
         private static readonly IEnumerable<ComboItem> Complexidades = ComplexidadeList.ComboValues.Where(x => x.Value > 0);
-
-
 
         public static IEnumerable<GrupoModel> Processar(Stream file)
         {
@@ -105,18 +105,23 @@ namespace Levantoso.Domain.Excel
 
         private static ItemLevantamentoModel MontaItemLevantamento(this string codigoItem, string descricaoItem)
         {
-            codigoItem = codigoItem.PadLeft(3, '0');
+            var partesDescricaoItem = codigoItem.Split(';');
+            if (partesDescricaoItem.Length < 3)
+                throw new Exception($"Item não identificado: {codigoItem}");
 
-            var idItem = byte.Parse(codigoItem.Substring(0, 2));
-            var idComplexidade = byte.Parse(codigoItem[2].ToString());
+            var idTipoOperacao = byte.Parse(partesDescricaoItem[0]);
+            var idItem = byte.Parse(partesDescricaoItem[1]);
+            var idComplexidade = byte.Parse(partesDescricaoItem[2]);
 
+            var tipoOperacaoCombo = TiposOperacoes.FirstOrDefault(x => x.Value == idTipoOperacao);
             var itemCombo = Itens.FirstOrDefault(x => x.Value == idItem);
             var complexidadeCombo = Complexidades.FirstOrDefault(x => x.Value == idComplexidade);
 
+            descricaoItem = descricaoItem.Replace($"{tipoOperacaoCombo.Text} de", "");
             descricaoItem = descricaoItem.Replace(itemCombo.Text, "");
             descricaoItem = descricaoItem.Replace(complexidadeCombo.Text, "");
             descricaoItem = descricaoItem.Trim();
-            return new ItemLevantamentoModel(itemCombo, complexidadeCombo, descricaoItem);
+            return new ItemLevantamentoModel(tipoOperacaoCombo, itemCombo, complexidadeCombo, descricaoItem);
         }
     }
 }

@@ -21,6 +21,7 @@
                     <table class="table table-striped @grupo.NomeGrupo" id="@grupo.NomeGrupo">
                         <thead>
                             <tr>
+                                <th scope="col">Tipo Oper.</th>
                                 <th scope="col">Item</th>
                                 <th scope="col">Complexidade</th>
                                 <th scope="col">Descrição</th>
@@ -42,7 +43,16 @@
                     <div id="grid-form">
                         <form id="form-tabela">
                             <div class="container-sm row">
-                                <div class="form-group col-sm" data-table="@grupo.NomeGrupo">
+                                <div class="form-group col-sm">
+                                    <label>T.O</label>
+                                    <select class="form-control input tipo-operacao" data-table="@grupo.NomeGrupo" required>
+                                        @foreach (var itemCombo in TipoOperacaoList.ComboValues)
+                                        {
+                                            <option value="@itemCombo.Value">@itemCombo.Text</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group col-sm">
                                     <label>Item</label>
                                     <select class="form-control input item" required>
                                         @foreach (var itemCombo in ItemList.ComboValues)
@@ -77,5 +87,3 @@
         }
     </div>
 </div>
-
-<div id="armazenamento"></div>

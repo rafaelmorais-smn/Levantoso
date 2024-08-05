@@ -112,10 +112,11 @@ namespace Levantoso.Domain.Excel
                 {
                     linha += 1;
                     var celulaCodigo = ws.Cells[linha, 1];
-                    celulaCodigo.Value = $"{itemLevantamento.Item.Value:00}{itemLevantamento.Complexidade.Value}";
+                    celulaCodigo.Value = $"{itemLevantamento.TipoOperacao.Value};{itemLevantamento.Item.Value};{itemLevantamento.Complexidade.Value};";
                     celulaCodigo.Style.Font.Color.SetColor(Color.White);
 
-                    ws.Cells[linha, 2].Value = $"{itemLevantamento.Item} {itemLevantamento.Complexidade} {itemLevantamento.Descricao}";
+                    ws.Cells[linha, 2].Value = $"{itemLevantamento.TipoOperacao.Text} de {itemLevantamento.Item.Text} {itemLevantamento.Complexidade.Text} " +
+                                               $"{itemLevantamento.Descricao}";
                 }
             }
 

@@ -51,6 +51,7 @@
     <Compile Include="Lists\ComboItem.cs" />
     <Compile Include="Lists\ComplexidadeList.cs" />
     <Compile Include="Lists\ItemList.cs" />
+    <Compile Include="Lists\TipoOperacaoList.cs" />
     <Compile Include="Models\GrupoModel.cs" />
     <Compile Include="Models\ItemLevantamentoAgrupadoModel.cs" />
     <Compile Include="Models\ItemLevantamentoModel.cs" />

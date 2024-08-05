@@ -12,11 +12,12 @@
     <div id="div-grid-tabela"></div>
     <div id="divs-botoes" class="row">
         <div id="div-botao-gerar" class="col">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalExemplo" 
-                    onclick="levantoso.aberturaNovaTabela()">Criar Tabela</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalNovoGrupo"
+                    onclick="levantoso.atribuirFocoNoInputDaModal('nomeGrupo')">Criar Tabela</button>
         </div>
         <div id="div-buton" class="col">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalGrupo">Gerar Arquivo</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalExportarLevantamento"
+                    onclick="levantoso.atribuirFocoNoInputDaModal('nomeArquivo')">Gerar Arquivo</button>
         </div>
     </div>
     <div class="form-group" id="div-file" style="padding: 20px;">
@@ -24,11 +25,11 @@
     </div>
 </div>
 
-<div class="modal fade" id="modalExemplo" tabindex="-1" aria-labelledby="modalExemploLabel" aria-hidden="true">
+<div class="modal fade" id="modalNovoGrupo" tabindex="-1" aria-labelledby="modalNovoGrupo" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalExemploLabel">Escolha o Nome da Tabela</h5>
+                <h5 class="modal-title">Escolha o Nome da Tabela</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
             </div>
             <div class="modal-body">
@@ -41,11 +42,11 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="modalGrupo" tabindex="-1" aria-labelledby="modalGrupo" aria-hidden="true">
+<div class="modal fade" id="modalExportarLevantamento" tabindex="-1" aria-labelledby="modalExportarLevantamento" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalTables">Escolha o Nome do Arquivo</h5>
+                <h5 class="modal-title">Escolha o Nome do Arquivo</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
             </div>
             <div class="modal-body">
