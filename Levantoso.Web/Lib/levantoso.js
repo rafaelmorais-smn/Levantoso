@@ -69,13 +69,24 @@
             data: JSON.stringify({ item: model }),
             dataType: 'html'
         }).done(function (newRow) {
-            $(btn).closest('div.quadro-grupo').find('table tbody').append('' + newRow +'');
-            form.trigger('reset');
+            var posicaoGrid = form.data('posicao-grid'),
+                bodyTabela = $(btn).closest('div.quadro-grupo').find('table tbody');
+            insereLinhaConsiderandoPosicaoAnterior(posicaoGrid, bodyTabela, newRow);
+            form.trigger('reset').data('posicao-grid', '');
             comboItem.focus();
         }).fail(function(xhr) {
             console.error('Falha ao carregar nova linha pro grid:', xhr.responseText);
         });
     };
+
+    function insereLinhaConsiderandoPosicaoAnterior(posicaoGrid, bodyTabela, linha) {
+        if (posicaoGrid === 0)
+            bodyTabela.prepend(linha);
+        else if (posicaoGrid && posicaoGrid.toString().length > 0)
+            bodyTabela.find('tr:eq(' + (+posicaoGrid - 1) + ')').after(linha);
+        else
+            bodyTabela.append(linha);
+    }
 
     function lerTabela(tabela) {
         var grupo = {
@@ -173,8 +184,8 @@
         var tr = $(btn).closest('tr'),
             form = $(btn).closest('div.quadro-grupo').find('form#form-tabela');
 
-
-
+        var posicaoGrid = tr.index();
+        form.data('posicao-grid', posicaoGrid);
         form.find('select.item').val(tr.find('td#item').data('value'));
         form.find('select.complexidade').val(tr.find('td#complexidade').data('value'));
         form.find('textarea.descricao').val(tr.find('#descricao').text()).focus();
