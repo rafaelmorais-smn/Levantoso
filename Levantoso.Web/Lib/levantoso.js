@@ -13,8 +13,20 @@
         $('#div-buton').hide();
     };
 
+    function validarNovoGrupo(novoGrupo) {
+        var grupos = listaGrupos();
+        if (grupos.indexOf(novoGrupo) <= -1)
+            return true;
+
+        alert('Grupo já existente!');
+        return false;
+    }
+
     var abrirGrupo = function () {
-        var nomeGrupo = $('#nomeGrupo').val(); 
+        var nomeGrupo = $('#nomeGrupo').val();
+        if (!validarNovoGrupo(nomeGrupo))
+            return false;
+
         $.get(config.urls.abrirGrupo, {
             nomeGrupo: nomeGrupo
         }).done(function(data) {
@@ -28,6 +40,7 @@
         }).fail(function(error) {
             console.error("Error fetching grid form content:", error);
         });
+        return true;
     };
 
     var atribuirFocoNoInputDaModal = function(idInput) {
@@ -35,6 +48,29 @@
             $('input#' + idInput).focus();
         }, 250);
     };
+
+    function validaInclusaoNovoItem(model) {
+
+        var validacoes = [];
+
+        if (!model.TipoOperacao.Value) 
+            validacoes.push('Selecione o tipo da operação');
+
+        if (!model.Item.Value)
+            validacoes.push('Selecione um item');
+
+        if (!model.Complexidade.Value)
+            validacoes.push('Selecione a complexidade');
+
+        if (!model.Descricao)
+            validacoes.push('Informe a descrição');
+
+        if (!validacoes.length)
+            return true;
+
+        alert(validacoes.join('. '));
+        return false;
+    }
 
     var adicionarDadosTabela = function (btn) {
         var form = $(btn).closest('form#form-tabela');
@@ -58,17 +94,8 @@
             Descricao: form.find('textarea.descricao').val()
         };
 
-        if (!model.TipoOperacao.Value)
-            return alert('Selecione o tipo da operação');
-
-        if (!model.Item.Value)
-            return alert('Selecione um item');
-
-        if (!model.Complexidade.Value)
-            return alert('Selecione a complexidade');
-
-        if (!model.Descricao)
-            return alert('Informe a descrição');
+        if (!validaInclusaoNovoItem(model))
+            return false;
 
         $.ajax({
             type: 'POST',
@@ -85,6 +112,8 @@
         }).fail(function(xhr) {
             console.error('Falha ao carregar nova linha pro grid:', xhr.responseText);
         });
+
+        return true;
     };
 
     function insereLinhaConsiderandoPosicaoAnterior(posicaoGrid, bodyTabela, linha) {
@@ -212,6 +241,51 @@
             $(btn).closest('div#container').remove();
     };
 
+    function listaGrupos(grupoDesconsiderar) {
+        var grupos = [];
+
+        var seletor = 'div.quadro-grupo table.tabela-grupo';
+        if (grupoDesconsiderar)
+            seletor += ':not(#' + grupoDesconsiderar + ')';
+
+        $(seletor).each(function () {
+            grupos.push($(this).attr('id'));
+        });
+
+        return grupos;
+    }
+
+    function carregaComboGruposDisponiveis(grupos) {
+        var comboGruposDisponivel = $('select.grupos-disponiveis').empty().append('<option>Selecione</option>');
+        
+        grupos.forEach(function (grupo) {
+            var option = $('<option>',
+                {
+                    value: grupo,
+                    text: grupo
+                });
+            comboGruposDisponivel.append(option);
+        });
+    }
+
+    var abrirEscolhaNovoGrupo = function (btn) {
+        $('tr[item-que-sera-trocado]').removeAttr('item-que-sera-trocado');
+        $(btn).closest('tr').attr('item-que-sera-trocado', '');
+        var grupos = listaGrupos($(btn).closest('table.tabela-grupo').attr('id'));
+        carregaComboGruposDisponiveis(grupos);
+        return true;
+    };
+
+    var mudaItemGrupo = function() {
+        var tr = $('tr[item-que-sera-trocado]');
+        var novoGrupo = $('select.grupos-disponiveis option:selected').text();
+        if (!novoGrupo)
+            return alert('Selecione o grupo de destino!');
+
+        $('table#' + novoGrupo).find('tbody').append(tr);
+        return true;
+    };
+
     return {
         init: init,
         abrirGrupo: abrirGrupo,
@@ -222,5 +296,7 @@
         editarItem: editarItem,
         apagarTabela: apagarTabela,
         atribuirFocoNoInputDaModal: atribuirFocoNoInputDaModal,
+        abrirEscolhaNovoGrupo: abrirEscolhaNovoGrupo,
+        mudaItemGrupo: mudaItemGrupo
     };
 })();

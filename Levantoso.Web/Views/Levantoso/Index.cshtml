@@ -59,6 +59,25 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="modalTrocarItemGrupo" tabindex="-1" aria-labelledby="modalTrocarItemGrupo" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Escolha o grupo de destino</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+                <label>Grupo:</label>
+                <select class="form-control input grupos-disponiveis"></select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="levantoso.mudaItemGrupo()">Mudar Grupo</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="~/lib/levantoso.js?d=@DateTime.Now.Ticks"></script>
 <link rel="stylesheet" href="~/lib/levantoso.css?d=@DateTime.Now.Ticks">
 <script>
