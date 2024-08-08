@@ -46,6 +46,30 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="modalEditarGrupo" tabindex="-1" aria-labelledby="modalEditarGrupo" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Escolha o novo nome da Tabela</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group col-sm">
+                    <label id="nomeAntigoGrupo" data-value></label>
+                </div>
+                <div class="form-group col-sm">
+                    <label>Nome:</label>
+                    <input id="novoNomeGrupo" type="text"/>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" onclick="levantoso.grupo.editar()">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="modalExportarLevantamento" tabindex="-1" aria-labelledby="modalExportarLevantamento" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

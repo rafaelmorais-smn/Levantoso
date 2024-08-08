@@ -13,8 +13,11 @@
             {
                 <div class="quadro-grupo" style="margin-top: 35px;">
                     <div style="display: flex">
-                        <h3 style="width: 93%">@grupo.NomeGrupo</h3>
-                        <button type="button" class="btn btn-danger" data-nome-grupo="@grupo.NomeGrupo" onclick="levantoso.grupo.remover(this)">
+                        <h3 style="width: 93%" class="titulo-grupo">@grupo.NomeGrupo</h3>
+                        <button type="button" class="btn btn-primary" onclick="levantoso.grupo.abrirModalEditar(this)" data-bs-toggle="modal" data-bs-target="#modalEditarGrupo">
+                            <i class="material-icons">edit</i>
+                        </button>
+                        <button type="button" class="btn btn-danger" onclick="levantoso.grupo.remover(this)">
                             <i class="material-icons">delete</i>
                         </button>
                     </div>

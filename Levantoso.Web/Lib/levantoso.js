@@ -39,7 +39,7 @@
 
     var atribuirFocoNoInputDaModal = function (idInput) {
         setTimeout(function () {
-            $('input#' + idInput).focus();
+            $('input#' + idInput).val('').focus();
         }, 250);
     };
 
@@ -111,8 +111,11 @@
         }
 
         function validarNovoGrupo(novoGrupo) {
-            var $grupos = listar();
-            if ($grupos.indexOf(novoGrupo) <= -1)
+            var grupos = listar();
+            grupos = grupos.map(function($grupo) {
+                return $grupo.toLowerCase();
+            });
+            if (grupos.indexOf(novoGrupo) <= -1)
                 return true;
 
             alert('Grupo já existente!');
@@ -149,11 +152,37 @@
             atualizaConteudoLocalStorage();
         };
 
+        var abrirModalEditar = function(btn) {
+            var nomeGrupo = $(btn).closest('div.quadro-grupo').find('table.tabela-grupo').attr('id');
+            $('label#nomeAntigoGrupo').text('Nome antigo: ' + nomeGrupo).attr('data-value', nomeGrupo).data('value', nomeGrupo);
+            atribuirFocoNoInputDaModal('novoNomeGrupo');
+        };
+
+        var editar = function() {
+            var novoNome = $('input#novoNomeGrupo').val(),
+                antigoNome = $('label#nomeAntigoGrupo').data('value');
+
+            if (!novoNome)
+                return alert('Informe o nome!');
+
+            if (!validarNovoGrupo(novoNome))
+                return false;
+
+            var quadroGrupo = $('table#' + antigoNome).closest('div.quadro-grupo');
+            quadroGrupo.find('h3').text(novoNome);
+            quadroGrupo.find('table.tabela-grupo').attr('id', novoNome);
+            quadroGrupo.find('select.tipo-operacao').attr('data-table', novoNome);
+            atualizaConteudoLocalStorage();
+            return true;
+        };
+
         return {
             inserir: inserir,
             remover: remover,
-            listar: listar
-        }
+            listar: listar,
+            abrirModalEditar: abrirModalEditar,
+            editar: editar
+        };
     })();
 
     // ITENS ----------------------------------------------------------------------------------------- 
