@@ -112,6 +112,12 @@
 
         function validarNovoGrupo(novoGrupo) {
             var grupos = listar();
+
+            if (novoGrupo.indexOf(' ') > -1) {
+                alert('Nome do grupo não pode conter espaços!');
+                return false;
+            }
+
             grupos = grupos.map(function($grupo) {
                 return $grupo.toLowerCase();
             });
@@ -385,6 +391,10 @@
                 });
             comboGruposDisponivel.append(option);
         });
+
+        setTimeout(function () {
+            comboGruposDisponivel.focus();
+        }, 250);
     }
 
     var abrirEscolhaNovoGrupo = function (btn) {
