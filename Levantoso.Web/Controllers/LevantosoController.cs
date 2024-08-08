@@ -35,5 +35,11 @@ namespace Levantoso.Web.Controllers
             var grupos = LeitorExcel.Processar(file?.InputStream);
             return View("_Grid", grupos);
         }
+
+        [HttpPost]
+        public ActionResult Load(IEnumerable<GrupoModel> grupos)
+        {
+            return View("_Grid", grupos);
+        }
     }
 }

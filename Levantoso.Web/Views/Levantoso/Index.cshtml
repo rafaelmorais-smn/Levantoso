@@ -19,9 +19,13 @@
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalExportarLevantamento"
                     onclick="levantoso.atribuirFocoNoInputDaModal('nomeArquivo')">Gerar Arquivo</button>
         </div>
+        
+        <div id="div-buton" class="col">
+            <button type="button" class="btn btn-danger" onclick="levantoso.limparTudo()">Limpar tudo</button>
+        </div>
     </div>
     <div class="form-group" id="div-file" style="padding: 20px;">
-        <input type="file" class="form-control" id="dataFile" onchange="levantoso.importarArquivo()" name="file" />
+        <input type="file" class="form-control" id="dataFile" onchange="levantoso.arquivo.importar()" name="file" />
     </div>
 </div>
 
@@ -37,7 +41,7 @@
                 <input id="nomeGrupo" type="text"/>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" onclick="levantoso.abrirGrupo()">Confirmar</button>
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" onclick="levantoso.grupo.inserir()">Confirmar</button>
             </div>
         </div>
     </div>
@@ -54,7 +58,7 @@
                 <input id="nomeArquivo" type="text" />
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="levantoso.lerDadosTabela()">Salvar</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="levantoso.arquivo.gerar()">Salvar</button>
             </div>
         </div>
     </div>
@@ -72,7 +76,7 @@
                 <select class="form-control input grupos-disponiveis"></select>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="levantoso.mudaItemGrupo()">Mudar Grupo</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="levantoso.item.mudarGrupo()">Mudar Grupo</button>
             </div>
         </div>
     </div>
@@ -86,7 +90,8 @@
             abrirGrupo: '@Url.Action("AbrirGrupo")',
             novaLinhaGrid: '@Url.Action("NovaLinhaGrid")',
             exportarParaExcel: '@Url.Action("ExportarParaExcel")',
-            importandoArquivo: '@Url.Action("Upload")'
+            importandoArquivo: '@Url.Action("Upload")',
+            load: '@Url.Action("Load")',
         }
     });
 
